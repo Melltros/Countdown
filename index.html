@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The day I am waiting fo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Pastel Gradient Background */
+            background: linear-gradient(180deg, #a8e6cf 0%, #dcedc1 25%, #ffd3b6 75%, #ffaaa5 100%);
+            font-family: 'Montserrat', sans-serif;
+            overflow: hidden;
+        }
+
+        /* Decorative Border Container */
+        .frame {
+            position: relative;
+            width: 80%;
+            max-width: 600px;
+            padding: 60px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 40px;
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        /* Sparkle/Floating Shape Effect */
+        .frame::before {
+            content: '✨';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 2rem;
+            opacity: 0.6;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: white;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            color: white;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .timer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .number {
+            font-size: 2.5rem;
+            font-weight: 500;
+            color: white;
+            display: block;
+        }
+
+        .label {
+            font-size: 0.7rem;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Floating Animation */
+        .frame {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="frame">
+        <h2>To The Day I am waiting for</h2>
+        <h1>sreehara's Birthday In</h1>
+        
+        <div class="timer-grid">
+            <div><span class="number" id="days">00</span><span class="label">Days</span></div>
+            <div><span class="number" id="hours">00</span><span class="label">Hours</span></div>
+            <div><span class="number" id="mins">00</span><span class="label">Mins</span></div>
+            <div><span class="number" id="secs">00</span><span class="label">Secs</span></div>
+        </div>
+    </div>
+
+    <script>
+        // Target: Jan 26, 2026
+        const target = new Date(2026, 0, 26, 0, 0, 0).getTime();
+
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = target - now;
+
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = d.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = h.toString().padStart(2, '0');
+            document.getElementById("mins").innerText = m.toString().padStart(2, '0');
+            document.getElementById("secs").innerText = s.toString().padStart(2, '0');
+        }, 1000);
+    </script>
+</body>
+</html>
