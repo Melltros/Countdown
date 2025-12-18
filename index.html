@@ -3,114 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The day I am waiting fo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+    <title>Birthday Countdown ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&family=Quicksand:wght@700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --accent-pink: #ff85a1;
+            --accent-blue: #bde0fe;
+        }
+
         body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            /* Pastel Gradient Background */
-            background: linear-gradient(180deg, #a8e6cf 0%, #dcedc1 25%, #ffd3b6 75%, #ffaaa5 100%);
-            font-family: 'Montserrat', sans-serif;
-            overflow: hidden;
+            margin: 0; padding: 0; height: 100vh;
+            /* Lake Gradient */
+            background: linear-gradient(180deg, #a2d2ff 0%, #ffafcc 100%);
+            font-family: 'Quicksand', sans-serif;
+            display: flex; justify-content: center; align-items: center;
+            overflow: hidden; position: relative;
         }
 
-        /* Decorative Border Container */
-        .frame {
-            position: relative;
-            width: 80%;
-            max-width: 600px;
-            padding: 60px;
-            text-align: center;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 40px;
-            backdrop-filter: blur(5px);
-            border: 2px solid rgba(255, 255, 255, 0.5);
-        }
-
-        /* Sparkle/Floating Shape Effect */
-        .frame::before {
-            content: '✨';
+        /* FLOATING LAKE ITEMS (Background) */
+        .lake-item {
             position: absolute;
-            top: 10px;
-            left: 10px;
-            font-size: 2rem;
-            opacity: 0.6;
+            z-index: 1;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
+            animation: drift 12s ease-in-out infinite;
+        }
+
+        .photo-sticker {
+            background: white;
+            padding: 10px 10px 25px 10px;
+            border-radius: 5px;
+            width: 100px;
+        }
+        .photo-sticker img {
+            width: 100%; height: 100px;
+            object-fit: cover;
+        }
+
+        @keyframes drift {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(40px, -30px) rotate(8deg); }
+            66% { transform: translate(-30px, 30px) rotate(-8deg); }
+        }
+
+        /* Item Positions */
+        #p1 { top: 8%; left: 8%; animation-delay: 0s; }
+        #p2 { top: 12%; right: 12%; animation-delay: -2s; }
+        #p3 { bottom: 12%; left: 12%; animation-delay: -4s; }
+        #p4 { bottom: 8%; right: 8%; animation-delay: -6s; }
+        #s1 { top: 35%; left: 15%; font-size: 3.5rem; }
+        #s2 { top: 45%; right: 15%; font-size: 4rem; }
+        #s3 { bottom: 35%; left: 20%; font-size: 3rem; }
+        #s4 { bottom: 45%; left: 5%; font-size: 3.5rem; }
+
+        /* THE COUNTDOWN (No Blurry Box) */
+        .countdown-wrapper {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            animation: floatUI 4s ease-in-out infinite;
+        }
+
+        @keyframes floatUI {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
 
         h1 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 3.5rem;
+            font-family: 'Fredoka', sans-serif;
             color: white;
-            margin: 0;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-
-        h2 {
-            font-size: 0.9rem;
-            letter-spacing: 3px;
-            color: white;
-            text-transform: uppercase;
+            font-size: 2.2rem;
             margin-bottom: 30px;
-            opacity: 0.9;
+            /* Text shadow to pop against the lake */
+            text-shadow: 4px 4px 0px var(--accent-pink);
         }
 
         .timer-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            margin-top: 20px;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .unit {
+            background: white;
+            border-radius: 30px;
+            padding: 20px 10px;
+            border: 5px solid var(--accent-blue);
+            box-shadow: 0 10px 0px var(--accent-blue);
         }
 
         .number {
-            font-size: 2.5rem;
-            font-weight: 500;
-            color: white;
             display: block;
+            font-size: 3rem;
+            font-family: 'Fredoka', sans-serif;
+            color: var(--accent-pink);
+            line-height: 1;
         }
 
         .label {
-            font-size: 0.7rem;
-            color: white;
+            font-size: 0.8rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            color: #888;
+            font-weight: 800;
+            letter-spacing: 2px;
         }
 
-        /* Floating Animation */
-        .frame {
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+        .footer-emojis {
+            margin-top: 30px;
+            font-size: 2rem;
+            filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.1));
         }
     </style>
 </head>
 <body>
 
-    <div class="frame">
-        <h2>To The Day I am waiting for</h2>
-        <h1>sreehara's Birthday In</h1>
+    <div class="lake-item photo-sticker" id="p1"><img src="images/photo1.jpg"></div>
+    <div class="lake-item photo-sticker" id="p2"><img src="images/photo2.jpg"></div>
+    <div class="lake-item photo-sticker" id="p3"><img src="images/photo3.jpg"></div>
+    <div class="lake-item photo-sticker" id="p4"><img src="images/photo4.jpg"></div>
+
+    <div class="lake-item" id="s1">🎁</div>
+    <div class="lake-item" id="s2">🧸</div>
+    <div class="lake-item" id="s3">🎂</div>
+    <div class="lake-item" id="s4">🌈</div>
+
+    <div class="countdown-wrapper">
+        <h1>Waiting for Her! ✨</h1>
         
         <div class="timer-grid">
-            <div><span class="number" id="days">00</span><span class="label">Days</span></div>
-            <div><span class="number" id="hours">00</span><span class="label">Hours</span></div>
-            <div><span class="number" id="mins">00</span><span class="label">Mins</span></div>
-            <div><span class="number" id="secs">00</span><span class="label">Secs</span></div>
+            <div class="unit"><span class="number" id="days">00</span><span class="label">Days</span></div>
+            <div class="unit"><span class="number" id="hours">00</span><span class="label">Hours</span></div>
+            <div class="unit"><span class="number" id="mins">00</span><span class="label">Mins</span></div>
+            <div class="unit"><span class="number" id="secs">00</span><span class="label">Secs</span></div>
         </div>
+
+        <div class="footer-emojis">🎀🎀🎀</div>
     </div>
 
     <script>
-        // Target: Jan 26, 2026
         const target = new Date(2026, 0, 26, 0, 0, 0).getTime();
 
-        setInterval(() => {
+        function update() {
             const now = new Date().getTime();
             const diff = target - now;
+
+            if (diff <= 0) {
+                document.querySelector('.countdown-wrapper').innerHTML = "<h1>HAPPY BIRTHDAY! 💖</h1>";
+                return;
+            }
 
             const d = Math.floor(diff / (1000 * 60 * 60 * 24));
             const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -121,7 +162,10 @@
             document.getElementById("hours").innerText = h.toString().padStart(2, '0');
             document.getElementById("mins").innerText = m.toString().padStart(2, '0');
             document.getElementById("secs").innerText = s.toString().padStart(2, '0');
-        }, 1000);
+        }
+
+        setInterval(update, 1000);
+        update();
     </script>
 </body>
 </html>
